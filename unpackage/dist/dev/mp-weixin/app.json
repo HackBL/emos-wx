@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/demo/demo",
+    "pages/login/login",
     "pages/index/index"
   ],
   "subPackages": [],
@@ -11,5 +11,5 @@
     "backgroundColor": "#F8F8F8"
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap89.json"
+  "sitemapLocation": "sitemap36.json"
 }
