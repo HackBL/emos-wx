@@ -17,7 +17,14 @@
 			}
 		},
 		methods: {
-			
+			register:function(){
+				uni.login({
+					provider:"weixin",
+					success:function(resp){
+						console.log(resp.code)
+					}
+				})
+			}
 		}
 	}
 </script>
