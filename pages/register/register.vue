@@ -21,7 +21,17 @@
 				uni.login({
 					provider:"weixin",
 					success:function(resp){
-						console.log(resp.code)
+						// console.log(resp.code)
+						let code = resp.code
+						uni.getUserInfo({
+							provider:"weixin",
+							success:function(resp){
+								let nickName = resp.userInfo.nickName
+								let avatarUrl = resp.userInfo.avatarUrl
+								console.log(nickName)
+								console.log(avatarUrl)
+							}
+						})
 					}
 				})
 			}
