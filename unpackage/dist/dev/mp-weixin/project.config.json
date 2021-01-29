@@ -5,11 +5,12 @@
   },
   "setting": {
     "urlCheck": false,
-    "postcss": true
+    "postcss": false,
+    "minified": false
   },
   "compileType": "miniprogram",
   "libVersion": "",
-  "appid": "wx56c229cb56fe7589",
+  "appid": "touristappid",
   "projectname": "emos-wx",
   "condition": {
     "search": {
