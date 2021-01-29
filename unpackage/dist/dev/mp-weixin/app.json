@@ -1,7 +1,8 @@
 {
   "pages": [
     "pages/login/login",
-    "pages/index/index"
+    "pages/index/index",
+    "pages/register/register"
   ],
   "subPackages": [],
   "window": {
@@ -11,5 +12,5 @@
     "backgroundColor": "#F8F8F8"
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap47.json"
+  "sitemapLocation": "sitemap84.json"
 }
