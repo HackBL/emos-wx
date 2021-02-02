@@ -18,6 +18,22 @@
 		},
 		methods: {
 			register:function(){
+				let that = this
+				if (that.registerCode == null || that.registerCode.length == 0) {
+					uni.showToast({
+						icon: "none",
+						title: "激活码不能为空"
+					})
+					return
+				}
+				else if (/^[0-9]{6}$/.test(that.registerCode) == false) {
+					uni.showToast({
+						icon: "none",
+						title: "激活码必须是6为数字"
+					})
+					return
+				}
+				
 				uni.login({
 					provider:"weixin",
 					success:function(resp){
