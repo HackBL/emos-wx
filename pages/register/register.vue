@@ -23,15 +23,15 @@
 					uni.showToast({
 						icon: "none",
 						title: "激活码不能为空"
-					})
-					return
+					});
+					return;
 				}
 				else if (/^[0-9]{6}$/.test(that.registerCode) == false) {
 					uni.showToast({
 						icon: "none",
 						title: "激活码必须是6为数字"
-					})
-					return
+					});
+					return;
 				}
 				
 				uni.login({
@@ -53,14 +53,14 @@
 									nickname: nickName,
 									photo: avatarUrl,
 									registerCode: that.registerCode
-								}
+								};
 								// 调用AJAX
-								that.ajax(that.url.register, "POST", data, function(resp){
-									let permission = resp.data.permission
-									uni.setStorageSync("permission", permission)
+								that.ajax(that.url.register, 'POST', data, function(resp) {
+								    let permission = resp.data.permission;
+								    uni.setStorageSync('permission', permission);
 									console.log(permission)
-									// TODO 跳转到index页面
-								})
+								    //跳转到index页面
+								});								
 							}
 						})
 					}
