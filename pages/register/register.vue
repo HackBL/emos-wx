@@ -57,7 +57,7 @@
 								// 调用AJAX
 								that.ajax(that.url.register, "POST", data, function(resp){
 									let permission = resp.data.permission
-									uni.setStorageSync("permission", permission)
+						 			uni.setStorageSync("permission", permission)
 									console.log(permission)
 									// TODO 跳转到index页面
 								})
