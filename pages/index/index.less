@@ -5,6 +5,7 @@
 }
 .swiper{
     height: 233px;
+	line-height: 250%;/* 可以改变swiper上小圆点的位置 */
     image{
         width: 100%;
     }
@@ -44,5 +45,26 @@
 		right: 5rpx;
 		top: 50rpx;
 		width: 60rpx;
+	}
+}
+.nav-container{
+	background-color: #fff;
+	margin-bottom: 20rpx;
+	padding: 50rpx 40rpx;
+	.nav-row{
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 50rpx;
+		.nav{
+			text-align: center;
+			.icon{
+				width: 80rpx;
+			}
+			.name{
+				display: block; // 独占一行
+				font-size: 30rpx;	
+				color: @font-color;
+			}
+		}
 	}
 }
