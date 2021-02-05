@@ -1,17 +1,40 @@
 <template>
-	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
-		<view class="text-area">
-			<text class="title">{{title}}</text>
+	<view class="page">
+			<swiper autoplay="true" circular="true" duration="1000" interval="8000" class="swiper">
+				<swiper-item>
+					<image mode="widthFix" src="https://emos-wechat-mini-app.s3.amazonaws.com/img/banner/swiper-1.jpg"></image>
+				</swiper-item>
+				<swiper-item>
+					<image mode="widthFix" src="https://emos-wechat-mini-app.s3.amazonaws.com/img/banner/swiper-2.jpg"></image>
+				</swiper-item>
+				<swiper-item>
+					<image mode="widthFix" src="https://emos-wechat-mini-app.s3.amazonaws.com/img/banner/swiper-3.jpg"></image>
+				</swiper-item>
+				<swiper-item>
+					<image mode="widthFix" src="https://emos-wechat-mini-app.s3.amazonaws.com/img/banner/swiper-4.jpg"></image>
+				</swiper-item>
+				<swiper-item>
+					<image mode="widthFix" src="https://emos-wechat-mini-app.s3.amazonaws.com/img/banner/swiper-5.jpg"></image>
+				</swiper-item>
+			</swiper>
+			<view class="notify-container">
+				<view class="notify-title">
+					<image src="../../static/icon-1.png" mode="widthFix" class="notify-icon"></image>
+					消息提醒
+				</view>
+				<view class="notify-content">
+					你有{{ unreadRows }}条未读消息
+				</view>
+				<image src="../../static/icon-2.png" mode="widthFix" class="more-icon"></image>
+			</view>
 		</view>
-	</view>
 </template>
 
 <script>
 	export default {
 		data() {
 			return {
-				title: 'Hello'
+				unreadRows:0
 			}
 		},
 		onLoad() {
@@ -23,30 +46,6 @@
 	}
 </script>
 
-<style>
-	.content {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.logo {
-		height: 200rpx;
-		width: 200rpx;
-		margin-top: 200rpx;
-		margin-left: auto;
-		margin-right: auto;
-		margin-bottom: 50rpx;
-	}
-
-	.text-area {
-		display: flex;
-		justify-content: center;
-	}
-
-	.title {
-		font-size: 36rpx;
-		color: #8f8f94;
-	}
+<style lang="less">
+    @import url("index.less");
 </style>

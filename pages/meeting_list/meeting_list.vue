@@ -1,6 +1,6 @@
 <template>
 	<view>
-		
+		会议
 	</view>
 </template>
 
