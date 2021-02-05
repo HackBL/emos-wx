@@ -60,7 +60,10 @@
 						 			uni.setStorageSync("permission", permission)
 
 									console.log(permission)
-								    //跳转到index页面
+								    // 注册成功，跳转到首页
+									uni.switchTab({
+										url: "../index/index"
+									})
 								});								
 							}
 						})

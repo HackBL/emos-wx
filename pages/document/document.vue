@@ -1,6 +1,6 @@
 <template>
 	<view>
-		
+		文档
 	</view>
 </template>
 
