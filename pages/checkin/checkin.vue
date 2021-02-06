@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<camera device-position="front" flash="auto" class="camara" @error="error" v-if="showCamera"></camera>
+		<camera device-position="front" flash="off" class="camara" @error="error" v-if="showCamera"></camera>
 		<image mode="widthFix" class="image" :src="photoPath" v-if="showImage"></image>
 		<view class="operate-container">
 			<button type="primary" class="btn" @tap="clickBtn" :disabled="canCheckin">{{btnText}}</button>
@@ -17,6 +17,7 @@
 	export default {
 		data() {
 			return {
+				// 启动程序默认值
 				canCheckin: false,
 				photoPath: '',
 				btnText: '拍照',
@@ -25,7 +26,31 @@
 			}
 		},
 		methods: {
-			
+			clickBtn:function(){
+				let that = this
+				if (that.btnText == "拍照") {
+					let ctx = uni.createCameraContext();
+					ctx.takePhoto({
+						quality:"high",
+						success:function(resp){
+							console.log(resp.tempImagePath)
+							that.photoPath = resp.tempImagePath
+							that.showCamera = false
+							that.showImage = true
+							that.btnText = "签到"
+						}
+					})
+				}
+				else {
+					// TODO 执行签到功能
+				}
+			},
+			afresh:function(){
+				let that = this
+				that.showCamera = true
+				that.showImage = false
+				that.btnText = "拍照"
+			}
 		}
 	}
 </script>
