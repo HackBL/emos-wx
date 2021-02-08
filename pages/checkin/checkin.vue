@@ -31,7 +31,7 @@
 		// 生命周期回调函数
 		onLoad: function() {
 		    qqmapsdk = new QQMapWX({
-		        key: 'G5DBZ-VQYLI-AY3G5-5K6MJ-TRDN6-AKB2N'
+		        key: 'XXXXX-XXXXX-XXXXX-XXXXX-XXXXX-XXXXX'
 		    });
 		},
 		methods: {
