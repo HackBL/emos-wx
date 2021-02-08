@@ -14,6 +14,9 @@
 </template>
 
 <script>
+	var QQMapWX = require('../../lib/qqmap-wx-jssdk.min.js');
+	var qqmapsdk;
+
 	export default {
 		data() {
 			return {
@@ -25,9 +28,16 @@
 				showImage: false	// 默认隐藏image标签		
 			}
 		},
+		// 生命周期回调函数
+		onLoad: function() {
+		    qqmapsdk = new QQMapWX({
+		        key: 'G5DBZ-VQYLI-AY3G5-5K6MJ-TRDN6-AKB2N'
+		    });
+		},
 		methods: {
 			clickBtn:function(){
 				let that = this
+				// 点击拍照
 				if (that.btnText == "拍照") {
 					let ctx = uni.createCameraContext();
 					ctx.takePhoto({
@@ -41,8 +51,44 @@
 						}
 					})
 				}
+				// 点击上传							
 				else {
-					// TODO 执行签到功能
+					// 后端处理人脸识别 & 得到风险级别需要等待时间
+					uni.showLoading({
+						title:"签到中请稍后"
+					})
+					setTimeout(function(){
+						uni.hideLoading()
+					}, 30000)	// 30s后等待消息消失
+					
+					// 获得当前GPS坐标
+					uni.getLocation({
+						type:"wgs84",
+						success:function(resp){
+							let latitude = resp.latitude
+							let longitude = resp.longitude
+							// console.log(latitude)
+							// console.log(longitude)
+							
+							// 通过腾讯位置服务，把经纬度解析为具体位置
+							qqmapsdk.reverseGeocoder({
+								location:{
+									latitude:latitude,
+									longitude:longitude
+								},
+								success:function(resp){
+									console.log(resp.result)
+									let address = resp.result.address;
+									let addressComponent = resp.result.address_component;
+									// 具体地理位置
+									let nation = addressComponent.nation;
+									let province = addressComponent.province;
+									let city = addressComponent.city;
+									let district = addressComponent.district;
+								}
+							})
+						}
+					})
 				}
 			},
 			afresh:function(){
