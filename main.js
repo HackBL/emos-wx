@@ -45,6 +45,7 @@ Vue.prototype.ajax = function(url, method, data, fun) {
                 if (data.hasOwnProperty("token")) {
                     console.log(resp.data)
                     let token = data.token
+					console.log(token)
                     uni.setStorageSync("token", token)
                 }
 				// 通过匿名函数，可以对response进行各种高级的或其他的处理
