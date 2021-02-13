@@ -31,7 +31,7 @@
 		// 生命周期回调函数
 		onLoad() {
 			qqmapsdk = new QQMapWX({
-				key:"XXX"
+				key:"xxx"
 			})
 		},
 		methods: {
@@ -59,7 +59,7 @@
 					})
 					setTimeout(function(){
 						uni.hideLoading()
-					}, 10000)
+					}, 30000)
 					
 					// 获得当前GPS坐标
 					uni.getLocation({
@@ -77,7 +77,7 @@
 									longitude:longitude
 								},
 								success:function(resp){
-									console.log(resp.result)
+									// console.log(resp.result)
 									let address = resp.result.address;
 									let addressComponent = resp.result.address_component;
 									// 具体地理位置
@@ -85,6 +85,91 @@
 									let province = addressComponent.province;
 									let city = addressComponent.city;
 									let district = addressComponent.district;
+								
+									console.log(address)
+									console.log(nation)
+									console.log(province)
+									console.log(city)
+									console.log(district)
+									// 通过Ajax发送Request给后端
+									uni.uploadFile({
+										url: that.url.checkin,
+										filePath: that.photoPath,
+										name: "photo",
+										header: {
+											token: uni.getStorageSync("token")
+										},
+										formData: {
+											address: address,
+											country: nation,
+											province: province,
+											city: city,
+											district: district
+										},
+										// 回掉函数
+										success:function(resp) {
+											console.log(resp)
+											// 提示创建人脸模型
+											if (resp.statusCode == 500 && resp.data == "不存在人脸模型") {
+												uni.hideLoading()
+												uni.showModal({
+													title:"提示信息",
+													content:"EMOS系统中不存在你的人脸识别模型，是否用当前这张照片作为人脸识别模型？",
+													success:function(res){
+														// 确认上传照片，创建人脸模型
+														if (res.confirm) {
+															uni.uploadFile({
+																url: that.url.createFaceModel,
+																filePath: that.photoPath,
+																name: "photo",
+																header: {
+																	token: uni.getStorageSync("token")
+																},
+																success:function(resp){
+																	// 创建人脸模型失败
+																	if (resp.statusCode == 500) {
+																		uni.showToast({
+																			title:resp.data,
+																			icon:"none"
+																		})
+																	}
+																	// 创建人脸模型成功
+																	else  if (resp.statusCode == 200) {
+																		uni.showToast({
+																			title:"人脸建模成功"
+																		})
+																	}
+																},
+															})
+														}
+													}
+												})
+											}
+											// 签到成功
+											else if (resp.statusCode == 200) {
+												let data = JSON.parse(resp.data);
+												let code = data.code;	// 业务状态码
+												let msg = data.msg;		// 业务消息
+												// 签到执行成功
+												if (code == 200) {
+													uni.hideLoading();
+													uni.showToast({
+														title: '签到成功',
+														complete: function() {
+															//TODO 跳转到签到结果统计页面
+														}
+													});
+												}
+											}
+											// 其他类型异常
+											else if (resp.statusCode == 500) {
+												uni.showToast({
+													title: resp.data,
+													icon: 'none'
+												});
+											}
+										}
+									})
 								}
 							})
 						}
