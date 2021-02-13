@@ -3,8 +3,8 @@
 		<camera device-position="front" flash="off" class="camara" @error="error" v-if="showCamera"></camera>
 		<image mode="widthFix" class="image" :src="photoPath" v-if="showImage"></image>
 		<view class="operate-container">
-			<button type="primary" class="btn" @tap="clickBtn" :disabled="canCheckin">{{btnText}}</button>
-			<button type="warn" class="btn" @tap="afresh" :disabled="canCheckin">重拍</button>
+			<button type="primary" class="btn" @tap="clickBtn" :disabled="!canCheckin">{{btnText}}</button>
+			<button type="warn" class="btn" @tap="afresh" :disabled="!canCheckin">重拍</button>
 		</view>
 		<view class="notice-container">
 			<text class="notice">注意事项</text>
@@ -21,7 +21,7 @@
 		data() {
 			return {
 				// 启动程序默认值
-				canCheckin: false,
+				canCheckin: true,
 				photoPath: '',
 				btnText: '拍照',
 				showCamera: true,	// 默认显示carama标签
@@ -33,6 +33,22 @@
 			qqmapsdk = new QQMapWX({
 				key:"xxx"
 			})
+		},
+		onShow:function(){
+			let that = this
+			that.ajax(that.url.validCanCheckIn, "GET", null, function(resp){
+				let msg = resp.data.msg
+				// 无法考勤
+				if (msg != "可以考勤") {
+					that.canCheckin = false
+					setTimeout(function(){
+						uni.showToast({
+							title:msg,
+							icon:"none"
+						})
+					}, 1000)
+				}
+			}) 
 		},
 		methods: {
 			clickBtn:function(){
@@ -86,11 +102,6 @@
 									let city = addressComponent.city;
 									let district = addressComponent.district;
 								
-									console.log(address)
-									console.log(nation)
-									console.log(province)
-									console.log(city)
-									console.log(district)
 									// 通过Ajax发送Request给后端
 									uni.uploadFile({
 										url: that.url.checkin,
