@@ -145,7 +145,7 @@
 																		})
 																	}
 																	// 创建人脸模型成功
-																	else  if (resp.statusCode == 200) {
+																	else if (resp.statusCode == 200) {
 																		uni.showToast({
 																			title:"人脸建模成功"
 																		})
@@ -167,7 +167,10 @@
 													uni.showToast({
 														title: '签到成功',
 														complete: function() {
-															//TODO 跳转到签到结果统计页面
+															// 跳转到签到结果统计页面
+															uni.navigateTo({
+																url:'../checkin_result/checkin_result'
+															})
 														}
 													});
 												}
