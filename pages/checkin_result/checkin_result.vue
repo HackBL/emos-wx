@@ -48,7 +48,7 @@
 				</view>
 			</view>
 		</view>
-		<!-- 第二部分 -->
+		<!-- 第三部分 -->
 		<view class="checkin_report">
 			<image src="../../static/big-icon-1.png" mode="widthFix" class="big-icon"></image>
 			<view class="report-title">
@@ -59,15 +59,14 @@
 				<text>累计签到</text>
 				<view class="line"></view>
 			</view>
-			<view class="calender-container">
-				<view class="calender" v-for="one in weekCheckin" :key="one">
-					<image src="../../static/icon-9.png" mode="widthFix" class="calender-icon" v-if="one.type == '工作日'"></image>
-					<image src="../../static/icon-10.png" mode="widthFix" class="calender-icon" v-if="one.type == '节假日'"></image>
+			<view class="calendar-container">
+				<view class="calendar" v-for="one in weekCheckin" :key="one">
+					<image src="../../static/icon-9.png" mode="widthFix" class="calendar-icon" v-if="one.type == '工作日'"></image>
+					<image src="../../static/icon-10.png" mode="widthFix" class="calendar-icon" v-if="one.type == '休息日'"></image>
 					<text class="day">{{one.day}}</text>
 					<text class="result green" v-if="one.status == '正常'">{{one.status}}</text>
 					<text class="result yellow" v-if="one.status == '迟到'">{{one.status}}</text>
 					<text class="result red" v-if="one.status == '缺勤'">{{one.status}}</text>
-					
 				</view>
 			</view>
 		</view>
@@ -78,27 +77,37 @@
 	export default {
 		data() {
 			return {
-				name:"牛逼哄哄",
-				photo:"https://thirdwx.qlogo.cn/mmopen/vi_32/PlUB6amWAQh9F4rF2bqHYlLKvlkRMjHd7lnhaNwmUYibic2gEmCJTJfCQ9Q4d4H0fr1mdicuMIibzNEa7ASobib5DFQ/132",
-				deptName:"管理部",
-				address: "辽宁省大连市",
-				status: "正常",
-				risk: "中风险",
-				checkinTime: "08:25",
-				date: "2020年12月1日",
-				attendanceTime: "08:30",
-				closingTime: "17:30",
-				checkinDays: 201,
-				weekCheckin:[
-					{type:"工作日",day:"周一",status:"缺勤"},
-					{type:"工作日",day:"周二",status:"迟到"},
-					{type:"工作日",day:"周三",status:"正常"},
-					{type:"工作日",day:"周四",status:"正常"},
-					{type:"工作日",day:"周五",status:"正常"},
-					{type:"节假日",day:"周六",status:""},
-					{type:"节假日",day:"周日",status:""}
-				]
+				name:"",
+				photo:"",
+				deptName:"",
+				address: "",
+				status: "",
+				risk: "",
+				checkinTime: "",
+				date: "",
+				attendanceTime: "",
+				closingTime: "",
+				checkinDays: 0,
+				weekCheckin:[]
 			}
+		},
+		onShow: function() {
+		    let that = this;
+		    that.ajax(this.url.searchTodayCheckin, 'GET', null, function(resp) {
+		        let result = resp.data.result;
+		        that.name = result.name;
+		        that.photo = result.photo;
+		        that.deptName = result.deptName;
+		        that.date = result.date;
+		        that.attendanceTime = result.attendanceTime;
+		        that.closingTime = result.closingTime;
+		        that.checkinTime = result.checkinTime;
+		        that.status = result.status;
+		        that.risk = result.risk;
+		        that.address = result.address;
+		        that.checkinDays = result.checkinDays;
+		        that.weekCheckin = result.weekCheckin;
+		    });
 		},
 		methods: {
 			
