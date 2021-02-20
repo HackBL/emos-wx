@@ -78,6 +78,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/my_checkin/my_checkin",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
