@@ -28,7 +28,7 @@
             "path" : "pages/meeting_list/meeting_list",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "会议",
                 "enablePullDownRefresh": false
             }
             
@@ -37,7 +37,7 @@
             "path" : "pages/document/document",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "文档",
                 "enablePullDownRefresh": false
             }
             
@@ -46,7 +46,7 @@
             "path" : "pages/contacts/contacts",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "通讯录",
                 "enablePullDownRefresh": false
             }
             
@@ -55,7 +55,7 @@
             "path" : "pages/mine/mine",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "我的",
                 "enablePullDownRefresh": false
             }
             
@@ -64,7 +64,7 @@
             "path" : "pages/checkin/checkin",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "在线签到",
                 "enablePullDownRefresh": false
             }
             
@@ -73,7 +73,7 @@
             "path" : "pages/checkin_result/checkin_result",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "签到结果",
                 "enablePullDownRefresh": false
             }
             
@@ -82,7 +82,7 @@
             "path" : "pages/my_checkin/my_checkin",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "我的考勤",
                 "enablePullDownRefresh": false
             }
             

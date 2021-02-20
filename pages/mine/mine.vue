@@ -46,10 +46,20 @@
 		},
 		data() {
 			return {
-				name:"牛逼",
-				deptName:"门神",
-				photo:"https://thirdwx.qlogo.cn/mmopen/vi_32/PlUB6amWAQh9F4rF2bqHYlLKvlkRMjHd7lnhaNwmUYibic2gEmCJTJfCQ9Q4d4H0fr1mdicuMIibzNEa7ASobib5DFQ/132"
+				name:"",
+				deptName:"",
+				photo:""
 			}
+		},
+		onShow:function(){
+			let that = this		
+			that.ajax(that.url.searchUserSummary, "GET", null, function(resp){
+				let result = resp.data.result
+				console.log(result)
+				that.name = result.name
+				that.deptName = result.deptName
+				that.photo = result.photo
+			})
 		},
 		methods: {
 			
