@@ -26,7 +26,7 @@
 		</view>
 		<view class="calendar-container">
 			<uni-calendar :insert="true" :lunar="false" :selected="list" 
-			@monthSwitch="changeMonth" @confirm="changeMonth" @change="changeMonth"></uni-calendar>
+			@monthSwitch="changeMonth" @confirm="changeMonth" @backtoday="changeMonth"></uni-calendar>
 		</view>
 	</view>
 </template>

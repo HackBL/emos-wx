@@ -284,6 +284,7 @@
 			 */
 			backtoday() {
 				console.log(this.cale.getDate(new Date()).fullDate);
+				this.setEmit('backtoday')	// 后加元素
 				let date = this.cale.getDate(new Date()).fullDate
 				this.cale.setDate(date)
 				this.init(date)
